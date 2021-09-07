@@ -1,0 +1,21 @@
+.container {
+  text-align: center;
+  position: relative;
+}
+
+.center {
+  position: relative;
+  top: 200px;
+}
+
+.typed {
+  z-index: -1;
+  position: absolute;
+  top: 62%;
+}
+.typed {
+  position: relative;
+  text-align: left;
+  bottom: 600px;
+  
+}

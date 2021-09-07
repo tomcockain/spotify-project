@@ -1,0 +1,4 @@
+@font-face {
+    font-family: "PublicSans";
+    src: local("PublicSans"), url(./assets/fonts/PublicSans/PublicSans-Regular.otf) format("truetype");
+}
