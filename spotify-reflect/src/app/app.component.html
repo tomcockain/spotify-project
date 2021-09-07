@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<div class="container">
+    <br>
+    <div class="center">
+        <div *ngIf="signIn; else elseBlock">
+            <app-logo></app-logo>
+        </div>
+        <ng-template #elseBlock>
+            <app-logo-frozen></app-logo-frozen>
+        </ng-template>    
+                 
+        <app-authentication> </app-authentication>       
+    </div>
+
+    <!-- <div class="typed">
+        <ngx-typed-js [strings]="['Hello.', 'Welcome to Spotify Roast Please connect your spotify using the link below']">
+            <h1 class="typing"></h1>
+        </ngx-typed-js>
+    </div> -->
+    <router-outlet></router-outlet>
+   
+</div>
+
+

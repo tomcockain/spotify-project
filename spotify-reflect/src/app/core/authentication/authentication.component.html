@@ -1,3 +1,14 @@
 <div style="margin: 5em;">
-    <button type="button" class="btn btn-primary btn-lg" (click)="login()">Login</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="login()">Add Player</button>
+</div>
+<div>
+    <p>name: {{ playerName }}</p>
+
+    <img src= {{image}} alt="profile_picture">
+
+    <div class="row">
+        <div *ngFor="let artist of artistLong" class="col-md-6 img-container">
+            <img [src]= artist alt="Image not found" height="250px" width="350px">
+        </div>
+    </div>
 </div>

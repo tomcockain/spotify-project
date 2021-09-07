@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AuthenticationComponent } from './core/authentication/authentication.component';    
-import { LogoComponent } from './core/logo/logo.component';
+import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
-  {path: '', component: LogoComponent},
   {path: 'home', component: HomeComponent}
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LogoComponent, HomeComponent, AuthenticationComponent];
+export const routingComponents = [HomeComponent];

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv= require('dotenv').config();
+
 const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
@@ -27,4 +28,3 @@ mongoose.connect(url, options).then(function () {
   .catch(function (err) {
     console.log(err);
   });
-  

@@ -1,103 +1,21 @@
-#circle{
-    fill:rgb(57, 235, 86);
-    animation: colorChange 3s linear;
-    fill: #ff0000;
-
-}
-@keyframes colorChange {
-    0%{fill:rgb(57, 235, 86)}
-    30%{fill:rgb(255, 153, 0)}
-    100%{fill: #ff0000}
-}
-#fire1{
-    animation-name: moveUpDown;
-    animation-duration: 2.3s;
-    animation-iteration-count: infinite
-}
-@keyframes moveUpDown {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-40%);
-      }
-}
-#fire2{
-    animation-name: moveUpDown2;
-    animation-duration: 1.7s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown2 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-30%);
-      }
-}
-#fire3{
-    animation-name: moveUpDown3;
-    animation-duration: 2.1s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown3 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-30%);
-      }
-}
-#fire4{
-    animation-name: moveUpDown4;
-    animation-duration: 3.1s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown4 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20%);
-      }
-}
-#fire5{
-    animation-name: moveUpDown5;
-    animation-duration: 2.9s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown5 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-30%);
-      }
-}
-#fire6{
-    animation-name: moveUpDown6;
-    animation-duration: 1.4s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown6 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20%);
-      }
-}
-#fire7{
-    animation-name: moveUpDown7;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-}
-@keyframes moveUpDown7 {
-    0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-40%);
-      }
+.container {
+  text-align: center;
+  position: relative;
 }
 
+.center {
+  position: relative;
+  top: 200px;
+}
+
+.typed {
+  z-index: -1;
+  position: absolute;
+  top: 62%;
+}
+.typed {
+  position: relative;
+  text-align: left;
+  bottom: 600px;
+  
+}

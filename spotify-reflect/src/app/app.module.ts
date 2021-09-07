@@ -7,16 +7,20 @@ import { AppComponent } from './app.component';
 import { DataService } from './data.service';
 
 import { HttpClientModule } from '@angular/common/http';
-import { OAuthModule } from 'angular-oauth2-oidc';
-import { HomeComponent } from './home/home.component';
-
+import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
+import { LogoComponent } from './core/logo/logo.component';
+import { AuthenticationComponent} from './core/authentication/authentication.component'
+import {NgxTypedJsModule} from 'ngx-typed-js';
+import { LogoFrozenComponent } from './core/logo-frozen/logo-frozen.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    HomeComponent,
+    LogoComponent,
+    AuthenticationComponent,
+    LogoFrozenComponent
   ],
   imports: [
     BrowserModule,
@@ -24,12 +28,16 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['localhost:3000/api'],
+        allowedUrls: ['http://localhost'],
         sendAccessToken: true
       }
     }),
+    NgxTypedJsModule
   ],
-  providers: [DataService],
+  providers: [DataService, {
+    provide:OAuthStorage, useValue: localStorage
+  }],
+            
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,10 @@
 <p>home works!</p>
-User: {{user.email}}
 
+<p>{{userDetails.display_name}}</p>
+<img src= {{image}} alt="profile_picture">
 
+<div class="row">
+    <div *ngFor="let artist of artistLong" class="col-md-6 img-container">
+        <img [src]= artist alt="Image not found" height="250px" width="350px">
+    </div>
+</div>
