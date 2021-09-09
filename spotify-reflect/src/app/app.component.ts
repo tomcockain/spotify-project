@@ -10,6 +10,7 @@ export class AppComponent {
   
   signIn: boolean = false;
   title: string = 'Spotify Reflect';
+  players: any[] = [];
 
   constructor(private oauthService:OAuthService) {}
 
@@ -20,5 +21,4 @@ export class AppComponent {
       }
     });
   }
-  
 }

@@ -11,7 +11,7 @@ const UserSchema = mongoose.Schema({
   },
   shortTopSongs: {
     type: [],
-    artist:
+    song:
     {      
       name: { 
         type: String
@@ -25,6 +25,7 @@ const UserSchema = mongoose.Schema({
     }
   },  
   longTopSongs: {
+    type:[],
     song: {      
       name: { 
         type: String
@@ -54,7 +55,23 @@ const UserSchema = mongoose.Schema({
         }
       }  
     },
-  longTopArtists: [{}],
+  longTopArtists: {
+    type: [],
+    artist: {
+      name: { 
+        type: String
+      },
+      image: {
+        type: String
+      },
+      popularity: {
+        type: Number
+      },
+      genres: {
+        type: [String]
+      }
+    }  
+  },
   recentlyPlayed: {
 
   },

@@ -1,14 +1,20 @@
 <div style="margin: 5em;">
     <button type="button" class="btn btn-primary btn-lg" (click)="login()">Add Player</button>
-</div>
 <div>
-    <p>name: {{ playerName }}</p>
-
-    <img src= {{image}} alt="profile_picture">
-
-    <div class="row">
-        <div *ngFor="let artist of artistLong" class="col-md-6 img-container">
-            <img [src]= artist alt="Image not found" height="250px" width="350px">
-        </div>
-    </div>
+<div *ngIf="players?.length > 1" style="margin: 5em;">
+    <button type="button" class="btn btn-danger btn-lg" (click)="">Start</button>
+<div>
+    
+ 
+<div class="currentPlayers">
+    <table >
+        <tbody>
+            <tr *ngFor="let p of players">
+                <td><img [src]=p.image class="playerImg"></td>
+                <td> {{ p.name }} </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+

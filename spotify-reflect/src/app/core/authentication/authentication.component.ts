@@ -14,8 +14,6 @@ export class AuthenticationComponent implements OnInit {
 
   @Output() public signInEvent = new EventEmitter<boolean>();
 
-
-
   playerName: String = '';
   image: String = '';
   artistShort: any
@@ -23,21 +21,20 @@ export class AuthenticationComponent implements OnInit {
   trackShort: any 
   trackLong: any
   followers: any 
+  addedAlready: boolean = false;
+  players: any [] = [];
 
-  players: String[] = [];
-
-  
   constructor(private dataService: DataService, private oauthService:OAuthService) { 
     this.configureSingleSignOn();
   }
 
   ngOnInit(): void {
-    
+    this.players = JSON.parse(sessionStorage.getItem("players") || "[]");
+    console.log(this.players);
   }
 
   retrieveData() {
-    
-
+  
     const getSpotifyData = async() => {
 
       let userDetails = this.getProfile();
@@ -50,11 +47,11 @@ export class AuthenticationComponent implements OnInit {
       return spotifyData;
     }
     getSpotifyData().then(()=> {
-      console.log(this.trackLong);
-      this.postToDB();
-     });
+      if(this.addedAlready === false){
+        this.postToDB();
+      }
+    });
   }
-
   
   getProfile() {
 
@@ -62,9 +59,30 @@ export class AuthenticationComponent implements OnInit {
       tap(data => {
         let userDetails = JSON.parse(JSON.stringify(data));
         this.playerName = userDetails.display_name;
+        this.players.forEach(element => {
+          if(element.name === this.playerName){
+            
+            this.addedAlready = true;
+            console.log(this.addedAlready)
+          }
+          console.log(element.name);
+        })
         console.log(this.playerName);
-        this.image = userDetails.images[0].url;
+        if(userDetails.images.length != 0){
+          this.image = userDetails.images[0].url;
+        }
+        else{
+          this.image = '../../assets/images/defaultProfileImage.png';
+        }
+        let player = {
+          "name": this.playerName,
+          "image": this.image,
+        };
         this.followers = userDetails.followers.total;
+        if(this.addedAlready === false){
+          this.players.push(player);
+          sessionStorage.setItem("players", JSON.stringify(this.players));
+        }
       }),
       first()
     ).toPromise();
@@ -155,14 +173,6 @@ export class AuthenticationComponent implements OnInit {
 
   postToDB(){
 
-  console.log(this.artistShort);
-  console.log(this.artistLong);
-  console.log(this.trackShort);
-  console.log(this.trackLong);
-  console.log(this.image);
-  console.log(this.followers);
-
-
     this.dataService.postUser(JSON.stringify({
       "name": this.playerName,
       "profileImage": this.image,
@@ -171,8 +181,6 @@ export class AuthenticationComponent implements OnInit {
       "longTopArtists": this.artistLong,
       "longTopSongs": this.trackLong,
       "followers": this.followers,
-
-      
     })).subscribe(
       feedback => {
         console.log(feedback);
