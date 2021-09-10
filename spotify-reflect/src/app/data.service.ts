@@ -11,9 +11,10 @@ export class DataService {
   private SPOTIFY_ARTISTSHORT = "http://localhost:3000/api/user/topArtistShort";
   private SPOTIFY_ARTISTLONG = "http://localhost:3000/api/user/topArtistLong";
   private POST_USER = "http://localhost:3000/api/user";
-  private SPOTIFY_SONGSHORT = "http://localhost:3000/api/user/topSongShort"
-  private SPOTIFY_SONGLONG = "http://localhost:3000/api/user/topSongLong"
-  private SPOTIFY_RECENTPLAYED = "http://localhost:3000/api/user/recentlyplayed" 
+  private SPOTIFY_SONGSHORT = "http://localhost:3000/api/user/topSongShort";
+  private SPOTIFY_SONGLONG = "http://localhost:3000/api/user/topSongLong";
+  private SPOTIFY_RECENTPLAYED = "http://localhost:3000/api/user/recentlyplayed";
+  private SPOTIFY_USER = "http://localhost:3000/api/user";
 
   constructor(private httpClient: HttpClient) {  }
 
@@ -47,5 +48,8 @@ export class DataService {
 
     return this.httpClient.get(this.SPOTIFY_RECENTPLAYED);
   }
+  public getUser(){
 
+    return this.httpClient.get(this.SPOTIFY_PROFILE);
+  }
 }

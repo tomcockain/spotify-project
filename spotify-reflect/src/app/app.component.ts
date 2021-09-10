@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -7,18 +6,10 @@ import { OAuthService } from 'angular-oauth2-oidc';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  signIn: boolean = false;
-  title: string = 'Spotify Reflect';
-  players: any[] = [];
 
-  constructor(private oauthService:OAuthService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.oauthService.events.subscribe(event => {
-      if (event.type == "token_received"){
-        this.signIn = true;
-      }
-    });
+    
   }
 }

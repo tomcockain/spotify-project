@@ -1,47 +1,5 @@
-<div class="container">
-
-    <div class="center">
-
-        <div class="row">
-            <div class="column">
-                <div *ngIf="signIn; else elseBlock">
-                    <app-logo></app-logo>
-                </div>
-                <ng-template #elseBlock>
-                    <app-logo-frozen></app-logo-frozen>
-                </ng-template>    
-            </div>
-            <div class="column">
-                <div class="currentPlayers">
-                    <table >
-                        <tbody>
-                            <tr *ngFor="let p of players">
-                                <td><img [src]=p.image class="playerImg"></td>
-                                <td> {{ p.name }} </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-          </div>
-        
-                 
-        <app-authentication> </app-authentication>
-        
-        
-
-        
+<router-outlet></router-outlet>
 
 
-    </div>
-    <!-- <div class="typed">
-        <ngx-typed-js [strings]="['Hello.', 'Welcome to Spotify Roast Please connect your spotify using the link below']">
-            <h1 class="typing"></h1>
-        </ngx-typed-js>
-    </div>     -->
-
-    <router-outlet></router-outlet>
-   
-</div>
 
 

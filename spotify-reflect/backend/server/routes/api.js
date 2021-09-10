@@ -90,5 +90,20 @@ router.post('/user', async (req, res) => {
 
 });
 
+router.get('/user', (req, res) => {
+  
+  let user = User.aggregate(
+    [
+      { 
+        '$match': {
+          'name': req.query.name
+        }
+      }
+    ]
+  )
+  res.header("Content-Type", 'application/json');
+  res.send(JSON.stringify(user));
+})
+
 
 module.exports = router; 

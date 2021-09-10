@@ -2,8 +2,11 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { authCodeFlowConfig } from './sso.config';
-import { DataService } from '../../data.service';
-import { tap, first } from 'rxjs/operators';
+import { DataService } from '../data.service';
+import { tap, first} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+// import Typewriter from 't-writer.js';
 
 @Component({
   selector: 'app-authentication',
@@ -11,8 +14,6 @@ import { tap, first } from 'rxjs/operators';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
-
-  @Output() public signInEvent = new EventEmitter<boolean>();
 
   playerName: String = '';
   image: String = '';
@@ -24,13 +25,54 @@ export class AuthenticationComponent implements OnInit {
   addedAlready: boolean = false;
   players: any [] = [];
 
-  constructor(private dataService: DataService, private oauthService:OAuthService) { 
+  signIn: boolean = false;
+  title: string = 'Spotify Reflect';
+
+  constructor(private dataService: DataService, private oauthService:OAuthService, private router: Router) { 
     this.configureSingleSignOn();
+    
   }
 
   ngOnInit(): void {
+    
     this.players = JSON.parse(sessionStorage.getItem("players") || "[]");
     console.log(this.players);
+    this.oauthService.events.subscribe(event => {
+      if (event.type == "token_received"){
+        this.signIn = true;
+      }
+    });
+
+    this.dataService.getUser('Tom Cockain').subscribe(
+      data => {
+        let p = JSON.parse(JSON.stringify(data));
+        console.log(p);
+      }
+    );
+    
+    
+
+
+
+  //   const target = document.querySelector('.tw')
+  //   const writer = new Typewriter(target, {
+  //     loop: true,
+  //     typeColor: 'red'
+  //   });
+  //   writer
+  //   .type('A simple syntax makes it easy.')
+  //   .rest(500)
+  //   .start();
+ }
+
+  start(){
+    if(this.players.length >= 2){
+      console.log("success");
+      this.router.navigateByUrl('/play');
+    }
+    else{
+      console.log("more players need");
+    }
   }
 
   retrieveData() {
@@ -59,15 +101,11 @@ export class AuthenticationComponent implements OnInit {
       tap(data => {
         let userDetails = JSON.parse(JSON.stringify(data));
         this.playerName = userDetails.display_name;
-        this.players.forEach(element => {
-          if(element.name === this.playerName){
-            
+        this.players.forEach(player => {
+          if(player.name === this.playerName){
             this.addedAlready = true;
-            console.log(this.addedAlready)
           }
-          console.log(element.name);
         })
-        console.log(this.playerName);
         if(userDetails.images.length != 0){
           this.image = userDetails.images[0].url;
         }

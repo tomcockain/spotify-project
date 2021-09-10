@@ -8,10 +8,9 @@ import { DataService } from './data.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
-import { LogoComponent } from './core/logo/logo.component';
-import { AuthenticationComponent} from './core/authentication/authentication.component'
 import {NgxTypedJsModule} from 'ngx-typed-js';
-import { LogoFrozenComponent } from './core/logo-frozen/logo-frozen.component';
+import { LogoComponent } from './logo/logo.component';
+import { LogoFrozenComponent } from './logo-frozen/logo-frozen.component';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { LogoFrozenComponent } from './core/logo-frozen/logo-frozen.component';
     AppComponent,
     routingComponents,
     LogoComponent,
-    AuthenticationComponent,
     LogoFrozenComponent
   ],
   imports: [
