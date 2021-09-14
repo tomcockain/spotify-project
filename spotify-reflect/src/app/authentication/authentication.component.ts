@@ -42,13 +42,14 @@ export class AuthenticationComponent implements OnInit {
         this.signIn = true;
       }
     });
+    
 
-    this.dataService.getUser('Tom Cockain').subscribe(
-      data => {
-        let p = JSON.parse(JSON.stringify(data));
-        console.log(p);
-      }
-    );
+    // this.dataService.getUser('Tom Cockain').subscribe(
+    //   data => {
+    //     let p = JSON.parse(JSON.stringify(data));
+    //     console.log(p);
+    //   }
+    // );
     
     
 
@@ -78,7 +79,7 @@ export class AuthenticationComponent implements OnInit {
   retrieveData() {
   
     const getSpotifyData = async() => {
-
+      
       let userDetails = this.getProfile();
       let shortTopArtists = this.getTopArtistShort();
       let longTopArtists = this.getTopArtistLong();
@@ -90,8 +91,14 @@ export class AuthenticationComponent implements OnInit {
     }
     getSpotifyData().then(()=> {
       if(this.addedAlready === false){
-        this.postToDB();
+        this.dataService.deleteUser(JSON.stringify({
+          "name": this.playerName
+          })).subscribe(data => {
+            console.log(data);
+            this.postToDB();
+          });
       }
+
     });
   }
   
@@ -131,15 +138,17 @@ export class AuthenticationComponent implements OnInit {
       tap(data => {
         let artist = [];
         let artistShortData: any = JSON.parse(JSON.stringify(data));
+        console.log(artistShortData);
         //loop through top 20 tracks //
         for(let i = 0; i < 20; i++){
-          
-          artist.push({
-            "name":artistShortData.items[i].name ,
-            "image": artistShortData.items[i].images[0].url,
-            "popularity": artistShortData.items[i].popularity,
-            "genres": artistShortData.items[i].genres
-          });
+          if(artistShortData.items[i]){
+            artist.push({
+              "name":artistShortData.items[i].name ,
+              "image": artistShortData.items[i].images[0].url,
+              "popularity": artistShortData.items[i].popularity,
+              "genres": artistShortData.items[i].genres
+            });
+          }
         }
         this.artistShort = artist;
       }),
@@ -154,13 +163,16 @@ export class AuthenticationComponent implements OnInit {
         let artistLongData: any = JSON.parse(JSON.stringify(data));
 
         //loop through top 50 tracks //
-        for(let i = 0; i < 50; i++){  
-          artist.push({
-            "name": artistLongData.items[i].name ,
-            "image": artistLongData.items[i].images[0].url,
-            "popularity": artistLongData.items[i].popularity,
-            "genres": artistLongData.items[i].genres
-          });
+        for(let i = 0; i < 50; i++){
+          if(artistLongData.items[i]){
+            artist.push({
+              "name": artistLongData.items[i].name ,
+              "image": artistLongData.items[i].images[0].url,
+              "popularity": artistLongData.items[i].popularity,
+              "genres": artistLongData.items[i].genres
+            });
+          }  
+
         }
         this.artistLong = artist;
       }),
@@ -175,12 +187,14 @@ export class AuthenticationComponent implements OnInit {
 
         //loop through top 50 tracks //
         for(let i = 0; i < 50; i++){
-          track.push({
-            "name": trackLongData.items[i].name ,
-            "image": trackLongData.items[i].album.images[0].url,
-            "popularity": trackLongData.items[i].popularity,
-          });
-          
+          if(trackLongData.items[i]){
+            track.push({
+              "name": trackLongData.items[i].name ,
+              "image": trackLongData.items[i].album.images[0].url,
+              "popularity": trackLongData.items[i].popularity,
+              "preview": trackLongData.items[i].preview_url
+            });
+          }
         }
         this.trackLong = track;
       }),
@@ -196,11 +210,14 @@ export class AuthenticationComponent implements OnInit {
 
         //loop through top 50 tracks //
         for(let i = 0; i < 50; i++){
-          track.push({
-            "name": trackShortData.items[i].name ,
-            "image": trackShortData.items[i].album.images[0].url,
-            "popularity": trackShortData.items[i].popularity,
-          });
+          if(trackShortData.items[i]){
+            track.push({
+              "name": trackShortData.items[i].name ,
+              "image": trackShortData.items[i].album.images[0].url,
+              "popularity": trackShortData.items[i].popularity,
+              "preview": trackShortData.items[i].preview_url
+            });
+          }
         }
         this.trackShort = track;
       }),
@@ -210,7 +227,7 @@ export class AuthenticationComponent implements OnInit {
 
 
   postToDB(){
-
+    
     this.dataService.postUser(JSON.stringify({
       "name": this.playerName,
       "profileImage": this.image,

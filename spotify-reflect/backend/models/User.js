@@ -21,6 +21,9 @@ const UserSchema = mongoose.Schema({
       },
       popularity: {
         type: Number
+      },
+      preview: {
+        type: String
       }
     }
   },  
@@ -35,6 +38,9 @@ const UserSchema = mongoose.Schema({
       },
       popularity: {
         type: Number
+      },
+      preview: {
+        type: String
       }
     }
   },
@@ -73,7 +79,18 @@ const UserSchema = mongoose.Schema({
     }  
   },
   recentlyPlayed: {
-
+    type:[],
+    song: {      
+      name: { 
+        type: String
+      },
+      image: {
+        type: String
+      },
+      popularity: {
+        type: Number
+      }
+    }
   },
   followers: {
     type: Number,

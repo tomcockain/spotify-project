@@ -90,20 +90,32 @@ router.post('/user', async (req, res) => {
 
 });
 
-router.get('/user', (req, res) => {
+router.delete('/user', async (req, res) => {
   
-  let user = User.aggregate(
-    [
-      { 
-        '$match': {
-          'name': req.query.name
-        }
-      }
-    ]
-  )
-  res.header("Content-Type", 'application/json');
-  res.send(JSON.stringify(user));
-})
+  try{
+    const user = await User.deleteMany({
+      name: req.body.name
+    });
+    res.header("Content-Type", 'application/json');
+    res.send(JSON.stringify(user));
+  }catch(err){
+    res.json({message: err});
+  }
+  
+});
 
+router.get('/user', async (req, res) => {
+
+  try{
+    console.log(req.query.name);
+    const user = await User.findOne({
+      name: req.query.name
+    });
+    res.header("Content-Type", 'application/json');
+    res.send(JSON.stringify(user));
+  }catch(err){
+    res.json({message: err});
+  }
+})
 
 module.exports = router; 
