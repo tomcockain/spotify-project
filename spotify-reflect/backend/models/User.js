@@ -87,8 +87,8 @@ const UserSchema = mongoose.Schema({
       image: {
         type: String
       },
-      popularity: {
-        type: Number
+      preview: {
+        type: String
       }
     }
   },

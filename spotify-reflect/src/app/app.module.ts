@@ -8,7 +8,8 @@ import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import {NgxTypedJsModule} from 'ngx-typed-js';
 import { LogoComponent } from './logo/logo.component';
 import { LogoFrozenComponent } from './logo-frozen/logo-frozen.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TopSongsAndArtistsComponent } from './game/top-songs-and-artists/top-songs-and-artists.component'
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     AppComponent,
     routingComponents,
     LogoComponent,
-    LogoFrozenComponent
+    LogoFrozenComponent,
+    TopSongsAndArtistsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-
 .center{
     position: absolute;
     top: 50%;
@@ -13,5 +12,5 @@
     object-fit: scale-down;
 }
 .imageAndName{
-    display: inline-flex;
+    display: inline;
 }
