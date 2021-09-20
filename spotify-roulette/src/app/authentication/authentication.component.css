@@ -1,0 +1,33 @@
+.playerImg {
+    float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+}
+.td {
+    padding: 10px 30px;
+    font-size: 20px;
+    color: white;
+}
+.container2{
+    text-align: center;
+    font-family: 'gotham';
+}
+.inline{
+    display: inline-flex;
+}
+.container {
+    text-align: center;
+    position: static;
+}
+h1{
+    font-size: 100px;
+    transform: translate(0, 5%);
+    text-align: center;
+    font-family: 'gothamBold';
+    color: #36ac57;
+    letter-spacing: -0.05em;
+}
+h1 span {
+    color:#C7493A;
+}

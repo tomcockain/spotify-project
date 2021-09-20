@@ -1,0 +1,40 @@
+<br/>
+<h1>Spotify <span>Reveal</span></h1>
+<div class="container">
+    
+    <div class="row">
+        <div class="column">
+            <div *ngIf="signIn; else elseBlock">
+                <app-logo-animation></app-logo-animation>
+            </div>
+            <ng-template #elseBlock>
+                <app-logo-frozen></app-logo-frozen>
+            </ng-template>    
+        </div>
+    </div>
+    
+    <br>
+    <div class="container2">
+        <div class="inline">
+            <button type="button" class="btn btn-primary btn-lg" (click)="login()" style="background-color: #36ac57 !important; border-color: #E1F7FF;">Add Player</button>
+            &nbsp;
+            <div *ngIf="players?.length >= 2">
+                <button type="button" class="btn btn-danger btn-lg" (click)="start()" style="background-color: #C7493A !important; border-color: #E1F7FF;">Start</button>
+            </div>
+        </div>
+        <br>
+        <div class="currentPlayers">
+            <table >
+                <tbody>
+                    <tr *ngFor="let p of players">
+                        <td><img [src]="p.image" class="playerImg"></td>
+                        &nbsp;
+                        <td> {{ p.name }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="homeButton" style="font-family: 'gotham';" >
+        <button type="button" class="btn btn-danger btn-lg" (click)="home()" style="background-color: #C7493A !important; border-color: #E1F7FF;">Home</button>
+    </div>
+    <div *ngIf="questionShow1">
+        <app-top-songs-and-artists [state]="question1State" (result)="revealAnswer($event)"></app-top-songs-and-artists>
+    </div>
+    <div *ngIf="questionShow2">
+        <app-top-songs-and-artists [state]="question2State" (result)="revealAnswer($event)"></app-top-songs-and-artists>
+    </div>
+    
+
+    <div class="controls">
+        <div *ngIf="answerShown">
+            <button type="button" class="btn btn-danger btn-lg" (click)="nextQuestion()"  style="background-color: #C7493A !important; border-color: #E1F7FF;">next</button>
+        </div>
+               
+    </div>
+</div>
+<img [src]="reactionGif" *ngIf="scoreState == 'gameEnd'" class="reaction"><img/>
