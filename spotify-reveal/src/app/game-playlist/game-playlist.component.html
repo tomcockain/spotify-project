@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div class="homeButton" style="font-family: 'gotham';" >
+        <button type="button" (click)="home()" class="btn btn-danger btn-lg" style="background-color: #C7493A !important; border-color: #E1F7FF;">Home</button>
+    </div>
+    <div *ngIf="questionShow1">
+        <app-question-generator-playlist [state]="question1State" (result)="revealAnswer($event)"></app-question-generator-playlist>
+    </div>
+    <div *ngIf="questionShow2">
+        <app-question-generator-playlist [state]="question2State" (result)="revealAnswer($event)"></app-question-generator-playlist>
+    </div>
+    
+
+    <div class="controls">
+        <div *ngIf="answerShown">
+            <button type="button" class="btn btn-danger btn-lg" (click)="nextQuestion()"  style="background-color: #C7493A !important; border-color: #E1F7FF;">next</button>
+        </div>
+        <br/>
+        <h1 *ngIf="questionCount != 0" [@scoreAnimation]="scoreState" style="font-family: 'gothamBold';"> Score: {{ correctQuestions }} / {{ questionCount }} </h1>
+        
+        
+    </div>
+</div>
+<img [src]="reactionGif" *ngIf="scoreState == 'gameEnd'" class="reaction"><img/>
